@@ -238,7 +238,7 @@ class _ScrollViewWidgetState extends State<ScrollViewWidget> {
               : dataGridConfiguration.verticalScrollPhysics,
           child: ConstrainedBox(
             constraints:
-                BoxConstraints(minHeight: min(scrollViewHeight, extentHeight)),
+                BoxConstraints(minHeight: max(0, min(scrollViewHeight, extentHeight))),
             child: SingleChildScrollView(
               controller: _horizontalController,
               scrollDirection: Axis.horizontal,
@@ -246,7 +246,7 @@ class _ScrollViewWidgetState extends State<ScrollViewWidget> {
                   ? const NeverScrollableScrollPhysics()
                   : dataGridConfiguration.horizontalScrollPhysics,
               child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: min(_width, extentWidth)),
+                constraints: BoxConstraints(minWidth: max(0, min(_width, extentWidth))),
                 child: _VisualContainer(
                   key: const ValueKey<String>('SfDataGrid-VisualContainer'),
                   isDirty: _container.isDirty,
